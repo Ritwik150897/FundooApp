@@ -19,7 +19,7 @@ function Signin() {
             ...prevState,
             email: event.target.value
         }))
-        console.log(event.target.value)
+        //console.log(event.target.value)
     }
 
     const takePassword = (event) => {
@@ -27,7 +27,7 @@ function Signin() {
             ...prevState,
             password: event.target.value
         }))
-        console.log(event.target.value)
+        //console.log(event.target.value)
     }
 
     const submit = () => {

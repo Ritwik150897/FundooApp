@@ -41,7 +41,7 @@ function Signup() {
             ...prevState,
             firstName: event.target.value
         }))
-        console.log(event.target.value)
+        //console.log(event.target.value)
     }
 
     const takeLastName = (event) => {
@@ -49,7 +49,7 @@ function Signup() {
             ...prevState,
             lastName: event.target.value
         }))
-        console.log(event.target.value)
+        //console.log(event.target.value)
     }
 
     const takeUsername = (event) => {
@@ -57,7 +57,7 @@ function Signup() {
             ...prevState,
             email: event.target.value
         }))
-        console.log(event.target.value)
+        //console.log(event.target.value)
     }
 
     const takePassword = (event) => {
@@ -65,7 +65,7 @@ function Signup() {
             ...prevState,
             password: event.target.value
         }))
-        console.log(event.target.value)
+        //console.log(event.target.value)
     }
 
     const takeConfirmPassword = (event) => {
@@ -73,7 +73,7 @@ function Signup() {
             ...prevState,
             confirmPassword: event.target.value
         }))
-        console.log(event.target.value)
+        //console.log(event.target.value)
     }
 
     const submit = () => {
@@ -159,10 +159,14 @@ function Signup() {
             }))
         }
 
-        if(emailTest === true && passwordTest === true && confirmPasswordTest === true && firstNameTest === true && lastNameTest === true){
+        if (emailTest === true && 
+            passwordTest === true && 
+            confirmPasswordTest === true && 
+            firstNameTest === true && 
+            lastNameTest === true) {
             signup(userInput).then((response) => {
-                console.log(response); 
-            }).catch((error) => {console.log(error)})
+                console.log(response);
+            }).catch((error) => { console.log(error) })
 
             console.log("Signup successful")
         }

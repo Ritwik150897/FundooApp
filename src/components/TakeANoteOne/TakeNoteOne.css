@@ -1,0 +1,33 @@
+.MainContainerOne{
+    width: 40vw;
+    height: 7vh;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 1px #e0e0e0;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 100px;
+    left: 500px;
+}
+
+.TakeNoteTextOne{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    align-items:center;
+    padding-left: 10px;
+}
+
+.filled-search{
+    width: 100%;
+    height: 80%;
+}
+
+.TakeNoteIconsOne{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}

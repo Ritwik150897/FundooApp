@@ -1,0 +1,59 @@
+.MainContainerThree{
+    width: 15vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    margin: 5px;
+    /* position: absolute;
+    top: 400px;
+    left: 500px; */
+}
+
+
+.TitleRowThree{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+}
+
+.TitleTextThree{
+    width: 80%;
+    height: 100%;
+}
+
+.filled-search{
+    width: 80%;
+    height: 80%;
+}
+
+.PinIconThree{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.TakeNoteTextThree{
+    width: 100%;
+    height: 40%;
+}
+
+.IconsThree{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#Check{
+    position: absolute;
+    right: 220px;
+    bottom: 140px;
+}
