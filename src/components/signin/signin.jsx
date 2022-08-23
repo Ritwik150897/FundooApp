@@ -3,11 +3,14 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './signin.css';
 import { login } from "../../services/userService";
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import { useNavigate } from "react-router-dom";
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 
 function Signin() {
-
+    const navigate = useNavigate()
     const [userInput, setUserInput] = React.useState({ email: "", password: "" })
     const [rejexObj, setRejexObj] = React.useState({ emailBorder: false, emailHelper: "", passwordBorder: false, passwordHelper: "" })
     const takeUsername = (event) => {
@@ -70,72 +73,77 @@ function Signin() {
             login(userInput).then((response) => {
                 console.log(response); 
                 localStorage.setItem("token",response.data.id)
+                navigate('/dashboard')
             }).catch((error) => {console.log(error)})
 
             console.log("login successful")
         }
     }
 
-    return (
-        <div className="MainContainer1">
-            <div className="Box1">
-                <div className="Logo1">
-                    <img id="Logo1" src="/googleLogo.png" alt="Logo" />
-                </div>
+    const newAccount = () => {
+        navigate('/signup')
+    }
 
-                <div className="Heading1">
+    return (
+        <Box className="MainContainer1">
+            <Paper className="Box1">
+                <Box className="Logo1">
+                    <img id="Logo1" src="/googleLogo.png" alt="Logo" />
+                </Box>
+
+                <Box className="Heading1">
                     <span id="SignIn">Sign in</span>
                     <span id="Use">Use your Google Account</span>
-                </div>
+                </Box>
 
-                <div className="UsernameContainer">
-                    <div className="UserBox">
+                <Box className="UsernameContainer">
+                    <Box className="UserBox">
                         <TextField fullWidth id="fullWidth" label="Email or Phone" variant="outlined" onChange={takeUsername} error={rejexObj.emailBorder} helperText={rejexObj.emailHelper} />
-                    </div>
-                </div>
+                    </Box>
+                </Box>
 
-                <div className="ForgotUsername">
+                <Box className="ForgotUsername">
                     <Button variant="text" id='BlueText'>Forgot email?</Button>
-                </div>
+                </Box>
 
-                <div className="PasswordContainer">
-                    <div className="UserBox">
+                <Box className="PasswordContainer">
+                    <Box className="UserBox">
                         <TextField fullWidth id="fullWidth" label="Password" variant="outlined" type="password" onChange={takePassword} error={rejexObj.passwordBorder} helperText={rejexObj.passwordHelper} />
-                    </div>
-                </div>
+                    </Box>
+                </Box>
 
-                <div className="ForgotUsername">
+                <Box className="ForgotUsername">
                     <Button variant="text" id='BlueText'>Forgot Password?</Button>
-                </div>
+                </Box>
 
-                <div className="Text">
+                <Box className="Text">
                     <span id="NotText">Not your computer? Use Guest mode to sign in privately.</span>
-                </div>
+                </Box>
 
-                <div className="LearnMoreText">
+                <Box className="LearnMoreText">
                     <Button variant="text" id='BlueText'>Learn More</Button>
-                </div>
+                </Box>
 
-                <div className="BoxBottom1">
-                    <div className="AddAccount">
-                        <Button variant="text" id='BlueText'>Create Account</Button>
-                    </div>
-                    <div className="Next">
+                <Box className="BoxBottom1">
+                    <Box className="AddAccount">
+                        <Button variant="text" id='BlueText' onClick={newAccount}>Create Account</Button>
+                    </Box>
+                    <Box className="Next">
                         <Button variant="contained" onClick={submit}>Next</Button>
-                    </div>
-                </div>
-            </div>
-            <div className="BottomText1">
-                <div className="Languages">
+                    </Box>
+                </Box>
+            </Paper>
+            <Box className="BottomText1">
+                <Box className="Languages">
                     <span id="BottomText">English (United States)</span>
-                </div>
-                <div className="Menu1">
+                </Box>
+                <Box className="Menu1">
                     <span id="BottomText">Help</span>
                     <span id="BottomText">Privacy</span>
                     <span id="BottomText">Terms</span>
-                </div>
-            </div>
-        </div>
+                </Box>
+            </Box>
+        </Box>
     )
 }
 

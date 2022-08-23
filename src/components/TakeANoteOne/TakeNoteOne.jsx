@@ -5,6 +5,7 @@ import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import { grey } from '@mui/material/colors';
+import Box from '@mui/material/Box';
 
 function TakeNoteOne(props) {
 
@@ -13,20 +14,20 @@ function TakeNoteOne(props) {
     }
 
     return (
-        <div onClick={openTakeNoteTwo}>
-            <div className="MainContainerOne" >
-                <div className="TakeNoteTextOne">
-                    <InputBase id="filled-search" placeholder="Take a note..." />
-                </div>
+        <Box onClick={openTakeNoteTwo}>
+            <Box className="MainContainerOne" >
+                <Box className="TakeNoteTextOne">
+                    <InputBase id="filled-search1" placeholder="Take a note..." />
+                </Box>
                 
-                <div className="TakeNoteIconsOne">
+                <Box className="TakeNoteIconsOne">
                     <CheckBoxOutlinedIcon fontSize='medium' sx={{color: grey[600] }}/>
                     <BrushOutlinedIcon fontSize='medium' sx={{color: grey[600] }}/>
                     <ImageOutlinedIcon fontSize='medium' sx={{color: grey[600] }}/>
-                </div>
-            </div>
+                </Box>
+            </Box>
 
-        </div>
+        </Box>
     )
 }
 

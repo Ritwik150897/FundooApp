@@ -6,13 +6,320 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import './signup.css';
 import { signup } from '../../services/userService';
+import Box from '@mui/material/Box';
+// import Paper from '@mui/material/Paper';
+import { makeStyles } from '@mui/styles';
 
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 const firstNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
 const lastNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
 
+// const useStyle = makeStyles({
+
+//     MainContainer: {
+//         width: "100vw",
+//         height: "100vh",
+//         display: "flex",
+//         flexDirection: "column",
+//         justifyContent: "center",
+//         alignItems: "center"
+//     },
+
+//     Box1: {
+//         width: "50%",
+//         height: "80%",
+//         border: "1px solid lightgrey",
+//         borderRadius: "5px",
+//         display: "flex",
+//         flexDirection: "row",
+//         alignItems: "center",
+//         justifyContent: "center"
+//     },
+
+//     Section1: {
+//         width: '50%',
+//         height: '90%',
+//         display: 'flex',
+//         flexDirection: 'column'
+//     },
+
+//     Logo: {
+//         width: '30%',
+//         height: '10%',
+//         display: 'flex',
+//         alignItems: 'flex-end',
+//         justifyContent: 'flex-start',
+//         "& #Logo": {
+//             width: '80px',
+//             height: '25px'
+//         }
+//     },
+
+//     Heading: {
+//         width: '100%',
+//         height: '12%',
+//         display: 'flex',
+//         alignItems: 'flex-start',
+//         "& #Heading": {
+//             fontSize: '20px'
+//         }
+//     },
+
+//     NameBox: {
+//         width: '100%',
+//         height: '10%',
+//         display: 'flex',
+//         flexDirection: 'row',
+//         alignItems: 'flex-start',
+//         justifyContent: 'space-between',
+//         "& #outlined-size-small-1": {
+//             width: '160px'
+//         }
+//     },
+
+//     UsernameBox: {
+//         width: '100%',
+//         height: '20%',
+//         display: 'flex',
+//         flexDirection: 'column',
+//         justifyContent: 'center',
+//         alignItems: 'flex-start',
+//         paddingTop: '5px',
+//         "& #SmallText": {
+//             paddingTop: '10px',
+//             paddingLeft: '10px',
+//             fontSize: '12px',
+//             color: '#5f6368'
+//         }
+//     },
+
+//     BlueText1: {
+//         width: '80%',
+//         height: '10%',
+//         display: 'flex',
+//         alignItems: 'flex-start',
+//         "& #BlueText": {
+//             fontSize: '13px',
+//             textTransform: 'capitalize',
+//             fontWeight: 'bolder'
+//         }
+//     },
+    
+//     PasswordBox: {
+//         width: '100%;',
+//         height: '25%;',
+//         display: 'flex;',
+//         flexDirection: 'column;',
+//         alignItems: 'flex-start;',
+//         justifyContent: 'space-between'
+//     },
+
+//     PasswordFields: {
+//         width: '100%',
+//         height: '33.2%',
+//         display: 'flex',
+//         flexDirection: 'row',
+//         alignItems: 'flex-start',
+//         justifyContent: 'space-between',
+//     },
+
+//     BottomBox: {
+//         width: '100%',
+//         height: '20%',
+//         display: 'flex',
+//         alignItems: 'flex-start'
+//     },
+    
+//     SignIn: {
+//         width: '40%',
+//         height: '100%',
+//         display: 'flex',
+//         justifyContent: 'flex-start'
+//     },
+    
+//     Next: {
+//         width: '60%',
+//         height: '100%',
+//         display: 'flex',
+//         justifyContent: 'flex-end',
+//         alignItems: 'center'
+//     },
+    
+//     Section2: {
+//         width: '35%',
+//         height: '50%',
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'center',
+//         paddingLeft: '50px'
+//     },
+    
+//     Section2Img: {
+//         width: '100%',
+//         height: '75%',
+//         display: 'flex',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//         "& #Section2-Img": {
+//                 width: '200px',
+//                 height: '500px'
+//         }
+//     },
+
+//     Section2Text: {
+//         width: '80%',
+//         height: '25%',
+//         fontWeight: 'lighter',
+//     },
+    
+//     BottomText: {
+//         width: '50%',
+//         height: '5%',
+//         display: 'flex',
+//         flexDirection: 'row',
+//     },
+    
+//     Languages: {
+//         width: '70%',
+//         height: '100%',
+//         display: 'flex',
+//         justifyContent: 'flex-start',
+//         alignItems: 'center'
+//     },
+    
+//     Menu: {
+//         width: '30%',
+//         height: '100%',
+//         display: 'flex',
+//         flexDirection: 'row',
+//         justifyContent: 'space-around',
+//         alignItems: 'center',
+
+//         "& #Section2-Img": {
+//             fontSize: '12px',
+//         }
+//     },
+
+//     ['@media only screen and (min-width :360px) and (max-width :480px)']:{
+//         Box: {
+//             width: '80%',
+//             height: '90%',
+//             border: 'none',
+//             alignItems: 'flex-start',
+//             justifyContent: 'flex-start'
+//         },
+    
+//         Section1: {
+//             width: '50%',
+//             height: '90%',
+//             display: 'flex',
+//             flexDirection: 'column'
+//         },
+    
+//         Logo: {
+//             width:'80%',
+//             marginLeft: '15px',
+//             marginBottom: '20px'
+//         },
+    
+//         Heading: {
+//             width: '100%',
+//             height: '10%',
+//             textAlign: 'left',
+//             marginLeft: '15px',
+//             "& #Heading":{
+//                 fontSize: '15px'
+//             }
+//         },
+    
+//         NameBox: {
+//             width: '100%',
+//             height: '10%',
+//             display: 'flex',
+//             flexDirection: 'column',
+//             marginTop: '20px',
+//             marginLeft: '15px',
+//             "& #outlined-size-small-1":{
+//                 width: '230px',
+//                 height: '1ch',
+//                 marginBottom: '20px'
+//             }
+//         },
+    
+//         UsernameBox: {
+//             width: '259px',
+//             height: '20%',
+//             marginTop: '35px',
+//             marginLeft: '15px',
+//             "& #SmallText":{
+//                 width: '259px',
+//                 paddingTop: '50px',
+//                 marginLeft: '15px',
+//                 textAlign: 'left',
+//             }
+//         },
+    
+//         BlueText1: {
+//             width: '259px',
+//             height: '10%',
+//             marginLeft: '15px',
+//             "& #BlueText": {
+//                 textAlign: 'left',
+//                 fontSize: '12px',
+//             }
+//         },
+    
+//         PasswordFields: {
+//             width: '259px',
+//             flexDirection: 'column',
+//             marginLeft: '15px',
+//         },
+    
+//         PasswordBox: {
+//             "& checkBox1": {
+//                 width: '300px',
+//                 marginLeft: '15px',
+//                 textAlign: 'left',
+//             }
+//         },
+    
+//         BottomBox: {
+//             marginTop: '70px',
+//         },
+    
+//         SignIn: {
+//             marginLeft: '15px',
+//             position: 'relative',
+//             bottom: '30px',
+//         },
+    
+//         Next: {
+//             paddingLeft: '130px',
+//             position: 'relative',
+//             bottom: '30px',
+//         },
+    
+//         Section2: {
+//             display: 'none',
+//         },
+    
+//         BottomText: {
+//             width: '80%',
+//             "& #BottomText": {
+//                 fontSize: '12px'
+//             }
+//         },
+
+//         Menu: {
+//             width: '50%',
+//         },
+//     }
+// })
+
 function Signup() {
+
+   // const classes = useStyle()
 
     const [userInput, setUserInput] = React.useState({
         firstName: "",
@@ -159,10 +466,10 @@ function Signup() {
             }))
         }
 
-        if (emailTest === true && 
-            passwordTest === true && 
-            confirmPasswordTest === true && 
-            firstNameTest === true && 
+        if (emailTest === true &&
+            passwordTest === true &&
+            confirmPasswordTest === true &&
+            firstNameTest === true &&
             lastNameTest === true) {
             signup(userInput).then((response) => {
                 console.log(response);
@@ -174,71 +481,112 @@ function Signup() {
 
 
     return (
-        <div>
-            <div className="MainContainer">
+        <Box>
+            <Box className=
+            // {classes.MainContainer}
+            "MainContainer">
 
-                <div className="Box">
-                    <div className="Section1">
-                        <div className="Logo">
+                <div className=
+                //{classes.Box1}
+                "Box1"
+                >
+                    <Box className="Section1"
+                    //{classes.Section1}
+                    >
+                        <Box className= "Logo"
+                        //{classes.Logo}
+                        >
                             <img src='/googleLogo.png' id='Logo' alt="Logo" />
-                        </div>
-                        <div className="Heading">
+                        </Box>
+                        <Box className= "Heading"
+                        //{classes.Heading}
+                        >
                             <span id='Heading'>Create your Google Account</span>
-                        </div>
-                        <div className="NameBox">
+                        </Box>
+                        <Box className= "NameBox"
+                        //{classes.NameBox}
+                        >
                             <TextField label="First name" id="outlined-size-small-1" size="small" onChange={takeFirstName} error={rejexObj.firstNameBorder} helperText={rejexObj.firstNameHelper} />
                             <TextField label="Last name" id="outlined-size-small-1" size="small" onChange={takeLastName} error={rejexObj.lastNameBorder} helperText={rejexObj.lastNameHelper} />
-                        </div>
-                        <div className="UsernameBox">
-                            <TextField fullWidth label="Username" id="outlined-size-small" size="small" onChange={takeUsername} error={rejexObj.emailBorder} helperText={rejexObj.emailHelper} />
+                        </Box>
+                        <Box className= "UsernameBox"
+                        //{classes.UsernameBox}
+                        >
+                            <TextField fullWidth label="Username" id="outlined-size-small-1" size="small" onChange={takeUsername} error={rejexObj.emailBorder} helperText={rejexObj.emailHelper} />
                             <span id='SmallText'>Your can use letters, numbers and periods</span>
-                        </div>
-                        <div className="BlueText1">
+                        </Box>
+                        <Box className= "BlueText1"
+                        //{classes.BlueText1}
+                        >
                             <Button variant="text" id='BlueText'>Use my current email address instead</Button>
-                        </div>
-                        <div className="PassowrdBox">
-                            <div className="PasswordFields">
+                        </Box>
+                        <Box className= "PasswordBox"
+                        //{classes.PasswordBox}
+                        >
+                            <Box className=
+                            "PasswordFields"
+                            //{classes.PasswordFields}
+                            >
                                 <TextField label="Password" id="outlined-size-small-1" type="password" size="small" onChange={takePassword} error={rejexObj.passwordBorder} helperText={rejexObj.passwordHelper} />
                                 <TextField label="Confirm" id="outlined-size-small-1" type="password" size="small" onChange={takeConfirmPassword} error={rejexObj.confirmPasswordBorder} helperText={rejexObj.confirmPasswordHelper} />
-                            </div>
+                            </Box>
                             <span id='SmallText'>Use 8 or more characters with a mix of letters, numbers and symbols</span>
-                            <FormGroup>
+                            <FormGroup id='checkBox1'>
                                 <FormControlLabel control={<Checkbox />} label="Show password" />
                             </FormGroup>
-                        </div>
-                        <div className="BottomBox">
-                            <div className="SignIn">
+                        </Box>
+                        <Box className= "BottomBox"
+                        //{classes.BottomBox}
+                        >
+                            <Box className= "SignIn"
+                            //{classes.SignIn}
+                            >
                                 <Button variant="text" id='BlueText'>Sign in instead</Button>
-                            </div>
-                            <div className="Next">
+                            </Box>
+                            <Box className= "Next"
+                           // {classes.Next}
+                            >
                                 <Button variant="contained" size="large" onClick={submit}>Next</Button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="Section2">
-                        <div className="Section2-Img">
+                            </Box>
+                        </Box>
+                    </Box>
+                    <Box className= "Section2"
+                    //{classes.Section2}
+                    >
+                        <Box className= "Section2Img"
+                        //{classes.Section2Img}
+                        >
                             <img src='/Signup.svg' id='Section2-Img' alt="shield" />
-                        </div>
-                        <div className="Section2-Text">
+                        </Box>
+                        <Box className= "Section2Text"
+                        //{classes.Section2Text}
+                        >
                             <span>One account. All of Google working for you.</span>
-                        </div>
-                    </div>
+                        </Box>
+                    </Box>
                 </div>
 
-                <div className="BottomText">
-                    <div className="Languages">
+                <Box className= "BottomText"
+                //{classes.BottomText}
+                >
+                    <Box className= "Languages"
+                    //{classes.Languages}
+                    >
+
                         <span id="BottomText">English (United States)</span>
-                    </div>
-                    <div className="Menu">
+                    </Box>
+                    <Box className= "Menu"
+                    //{classes.Menu}
+                    >
                         <span id="BottomText">Help</span>
                         <span id="BottomText">Privacy</span>
                         <span id="BottomText">Terms</span>
-                    </div>
-                </div>
+                    </Box>
+                </Box>
 
-            </div>
+            </Box>
 
-        </div>
+        </Box>
     )
 }
 

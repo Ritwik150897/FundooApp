@@ -5,14 +5,20 @@ import TakeNoteOne from '../TakeANoteOne/TakeNoteOne'
 import TakeNoteTwo from '../TakeANoteTwo/TakeNoteTwo'
 import TakeNoteThree from '../TakeANoteThree/TakeNoteThree'
 import { getNotesList } from '../../services/dataService'
-import { Drawer } from '@mui/material';
+// import { Drawer, Grid } from '@mui/material';
 import Drawer1 from '../Drawer/drawer';
+import Box from '@mui/material/Box';
 
 function Dashboard() {
 
     const [toggle, setToggle] = useState(false)
     const [notesList, setNotesList] = useState([])
     const [drawerToggle, setDrawerToggle] = useState(false)
+    const [currentNoteOption, setCurrentNoteOption] = useState('Notes')
+
+    const listenToDrawer = (noteOptionListener) => {
+        setCurrentNoteOption(noteOptionListener)
+    }
 
     const listenToTakeNoteOne = () => {
         setToggle(true)
@@ -24,14 +30,36 @@ function Dashboard() {
 
     const getNote = () => {
         getNotesList().then((response) => {
-            console.log(response)
-            setNotesList(response.data.data.data)
+            let filterNotes = []
+            if (currentNoteOption === 'Notes') {
+                filterNotes = response.data.data.data.filter((notes) => {
+                    if (notes.isArchived === false && notes.isDeleted === false) {
+                        return notes
+                    }
+                })
+            }
+            else if (currentNoteOption === 'Archive') {
+                filterNotes = response.data.data.data.filter((notes) => {
+                    if (notes.isArchived === true && notes.isDeleted === false) {
+                        return notes
+                    }
+                })
+            }
+            else if (currentNoteOption === 'Trash') {
+                filterNotes = response.data.data.data.filter((notes) => {
+                    if (notes.isArchived === false && notes.isDeleted === true) {
+                        return notes
+                    }
+                })
+            }
+            console.log(response);
+            setNotesList(filterNotes)
         }).catch((error) => console.log(error))
     }
 
     useEffect(() => {
         getNote()
-    }, [])
+    }, [currentNoteOption])
 
     //console.log(notesList, 'printed')
 
@@ -44,27 +72,21 @@ function Dashboard() {
     }
 
     return (
-        <div className='DashboardMainContainer'>
-            <Header listenToHeader = {listenToHeader}/>
-            <Drawer1 drawerToggle = {drawerToggle} />
-            <div>
+        <Box className='DashboardMainContainer'>
+            <Header listenToHeader={listenToHeader} />
+            <Drawer1 drawerToggle={drawerToggle} listenToDrawer={listenToDrawer} />
+            <Box className='TakeNoteTwoContainer'>
                 {
-                    toggle ? <TakeNoteTwo listenToTakeNoteTwo={listenToTakeNoteTwo} autoRefreshing = {autoRefreshing} /> : <TakeNoteOne listenToTakeNoteOne={listenToTakeNoteOne} />
+                    toggle ? <TakeNoteTwo listenToTakeNoteTwo={listenToTakeNoteTwo} autoRefreshing={autoRefreshing} /> : <TakeNoteOne listenToTakeNoteOne={listenToTakeNoteOne} />
                 }
-            </div>
-            <div style={{ width: '70vw', height: '50vh', marginTop: '200px', marginLeft: '300px', display: 'flex', flexWrap: 'wrap' }}>
+            </Box>
+            <Box className='NotesContainer' container >
                 {
-                    notesList.map((note) => (<TakeNoteThree note={note} autoRefreshing = {autoRefreshing} />))
+                    notesList.map((note) => (<TakeNoteThree note={note}
+                        autoRefreshing={autoRefreshing} />))
                 }
-            </div>
-
-
-            {/* <div className="NotesContainer">
-                {
-                    notesList.map((note) => (<TakeNoteThree note={note} />))
-                }
-            </div> */}
-        </div>
+            </Box>
+        </Box>
     )
 }
 

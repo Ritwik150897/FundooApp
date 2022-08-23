@@ -5,9 +5,10 @@
     box-shadow: 1px 1px 5px 1px #e0e0e0;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 100px;
-    left: 500px;        
+    position: relative;
+    /* top: 100px; */
+    left: 500px;  
+    /* margin-bottom: 50px;       */
 }
 
 .TitleRowTwo{
@@ -20,9 +21,18 @@
 .TitleTextTwo{
     width: 90%;
     height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
 }
 
-.filled-search{
+#TakeNoteTwoTitle{
+    width: 80%;
+    height: 80%;
+    
+}
+
+#TakeNoteTwoText{
     width: 80%;
     height: 80%;
 }
@@ -38,6 +48,9 @@
 .TakeNoteTextTwo{
     width: 100%;
     height: 40%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
 }
 
 .TakeNoteIconsTwo{
@@ -67,4 +80,55 @@
 
 .close{
     color: #424242;
+}
+
+@media only screen and (min-width :360px) and (max-width :480px){
+    .MainContainerTwo{
+        width: 80vw;
+        height: 20vh;
+        left: 65px;
+        bottom: 50px;  
+    }
+
+    .IconsTwo{
+        width: 90%;
+    }
+    
+    .CloseText{
+        width: 20%;
+    } 
+}
+
+@media only screen and (min-width :481px) and (max-width :720px){
+    .MainContainerTwo{
+        width: 75vw;
+        height: 20vh;
+        left: 65px;
+        bottom: 50px;  
+    }
+
+    .IconsTwo{
+        width: 90%;
+    }
+    
+    .CloseText{
+        width: 20%;
+    } 
+}
+
+@media only screen and (min-width :721px) and (max-width :1080px){
+    .MainContainerTwo{
+        width: 40vw;
+        height: 20vh;
+        left: 200px;
+        bottom: 30px;  
+    }
+
+    .IconsTwo{
+        width: 90%;
+    }
+    
+    .CloseText{
+        width: 20%;
+    } 
 }

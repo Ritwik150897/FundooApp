@@ -8,7 +8,7 @@ import { changeColorNotes } from '../../services/dataService';
 
 function ColorPopper(props) {
 
-    const colors = ["#2ECC71", "#AF7AC5", "#F1948A", "#A3E4D7", "#F5B7B1", "#F5B041", "#DC7633", "#F1C40F", "#AAB7B8", "#F1948A", "#2ECC71", "#F5B041"]
+    const colors = ["#F28B82", "#FBBC05", "#FFF475", "#CCFF90", "#CCFF90", "#CBF0F8", "#AECBFA", "#D7AEFB", "#FDCFE8", "#E6C9A8", "#E8EAED"]
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -27,7 +27,8 @@ function ColorPopper(props) {
             let colorInput = {noteIdList: [props.id], color: color}
             changeColorNotes(colorInput).then((response) => {
                 // console.log(response)
-                // props.autoRefreshing()
+                //props.autoRefreshing()
+                props.listenToColorUpdate()
             }).catch((error) => console.log(error))
         }
     }

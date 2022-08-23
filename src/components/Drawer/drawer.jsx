@@ -23,12 +23,15 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import {grey } from '@mui/material/colors';
+import { connect } from 'react-redux';
 
 const drawerWidth = 250;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
     marginTop: 65,
+    borderRight: 'none',
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -38,6 +41,7 @@ const openedMixin = (theme) => ({
 
 const closedMixin = (theme) => ({
     marginTop: 65,
+    borderRight: 'none',
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -93,7 +97,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function Drawer1(props) {
+function Drawer1(props) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -105,98 +109,101 @@ export default function Drawer1(props) {
         setOpen(false);
     };
 
+    const selectNotes = (noteOption) => {
+        props.listenToDrawer(noteOption)
+        props.dispatch({
+            type: `${noteOption}`
+        })
+    }
+
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex'}}>
             <CssBaseline />
             <Drawer variant="permanent" open={props.drawerToggle}>
                 <List>
 
-                    <ListItem button sx={{ display: 'flex' }}>
+                    <ListItem button onClick={() => selectNotes('Notes')} sx={{ display: 'flex', borderRadius: '0 25px 25px 0', '&:hover': {backgroundColor: '#feefc3'}}}>
                         <ListItemIcon
-                            sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : 'auto',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                position: 'absolute', 
-                                left: 20, 
-                            }}
+                            // sx={{
+                            //     minWidth: 0,
+                            //     mr: open ? 3 : 'auto',
+                            //     justifyContent: 'center',
+                            //     display: 'flex',
+                            //     position: 'absolute', 
+                            //     left: 20, 
+                            // }}
                         >
                             <LightbulbOutlinedIcon sx={{ width: 28, height: 28,}}/>
                         </ListItemIcon>
-                        <ListItemText primary='Notes' sx={{position: 'absolute', left: 80}}/>
+                        <ListItemText primary='Notes'/>
                     </ListItem>
 
-                    <ListItem button sx={{ display: 'flex' }}>
+                    <ListItem button onClick={() => selectNotes('Reminders')}sx={{ display: 'flex', borderRadius: '0 25px 25px 0', '&:hover': {backgroundColor: '#feefc3'}}}>
                         <ListItemIcon
-                            sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : 'auto',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                position: 'absolute', 
-                                left: 20,
-                                top:30
-                            }}
+                            // sx={{
+                            //     minWidth: 0,
+                            //     mr: open ? 3 : 'auto',
+                            //     justifyContent: 'center',
+                            //     display: 'flex',
+                            //     position: 'absolute', 
+                            //     left: 20,
+                            //     top:30
+                            // }}
                         >
                             <NotificationsNoneOutlinedIcon sx={{ width: 28, height: 28,}}/>
                         </ListItemIcon>
-                        <ListItemText primary='Reminders'  sx={{position: 'absolute', left: 80,
-                                top:28}}/>
+                        <ListItemText primary='Reminders' />
                     </ListItem>
 
-                    <ListItem button sx={{ display: 'flex' }}>
+                    <ListItem button onClick={() => selectNotes('Edit')} sx={{ display: 'flex', borderRadius: '0 25px 25px 0', '&:hover': {backgroundColor: '#feefc3'}}}>
                         <ListItemIcon
-                            sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : 'auto',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                position: 'absolute', 
-                                left: 20,
-                                top:60
-                            }}
+                            // sx={{
+                            //     minWidth: 0,
+                            //     mr: open ? 3 : 'auto',
+                            //     justifyContent: 'center',
+                            //     display: 'flex',
+                            //     position: 'absolute', 
+                            //     left: 20,
+                            //     top:60
+                            // }}
                         >
                             <EditOutlinedIcon sx={{ width: 28, height: 28,}}/>
                         </ListItemIcon>
-                        <ListItemText primary='Edit labels' sx={{position: 'absolute', left: 80,
-                                top:58}} />
+                        <ListItemText primary='Edit labels' s/>
                     </ListItem>
 
-                    <ListItem button sx={{ display: 'flex' }}>
+                    <ListItem button onClick={() => selectNotes('Archive')} sx={{ display: 'flex', borderRadius: '0 25px 25px 0', '&:hover': {backgroundColor: '#feefc3'}}}>
                         <ListItemIcon
-                            sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : 'auto',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                position: 'absolute', 
-                                left: 20,
-                                top:90
-                            }}
+                            // sx={{
+                            //     minWidth: 0,
+                            //     mr: open ? 3 : 'auto',
+                            //     justifyContent: 'center',
+                            //     display: 'flex',
+                            //     position: 'absolute', 
+                            //     left: 20,
+                            //     top:90
+                            // }}
                         >
                             <ArchiveOutlinedIcon sx={{ width: 28, height: 28,}}/>
                         </ListItemIcon>
-                        <ListItemText primary='Archive' sx={{position: 'absolute', left: 80,
-                                top:88}}/>
+                        <ListItemText primary='Archive'/>
                     </ListItem>
 
-                    <ListItem button sx={{ display: 'flex' }}>
+                    <ListItem button onClick={() => selectNotes('Trash')} sx={{ display: 'flex', borderRadius: '0 25px 25px 0', '&:hover': {backgroundColor: '#feefc3'}}}>
                         <ListItemIcon
-                            sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : 'auto',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                position: 'absolute', 
-                                left: 20,
-                                top:120
-                            }}
+                            // sx={{
+                            //     minWidth: 0,
+                            //     mr: open ? 3 : 'auto',
+                            //     justifyContent: 'center',
+                            //     display: 'flex',
+                            //     position: 'absolute', 
+                            //     left: 20,
+                            //     top:120
+                            // }}
                         >
-                            <DeleteOutlinedIcon sx={{ width: 28, height: 28,}}/>
+                            <DeleteOutlinedIcon sx={{ width: 28, height: 28}}/>
                         </ListItemIcon>
-                        <ListItemText primary='Trash' sx={{position: 'absolute', left: 80,
-                                top:117}}/>
+                        <ListItemText primary='Trash' />
                     </ListItem>
 
                 </List>
@@ -204,3 +211,7 @@ export default function Drawer1(props) {
         </Box>
     );
 }
+
+export default connect()(Drawer1)
+
+// sx={{ display: 'flex',justifyContent: 'space-between',borderRadius: '0 25px 25px 0', '&:hover': {backgroundColor: '#feefc3'}}}

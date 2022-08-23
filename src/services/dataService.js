@@ -27,3 +27,15 @@ export const archiveNotes = (noteObj) => {
 
     return response
 }
+
+export const deleteNotes = (noteObj) => {
+    let response = axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/trashNotes', noteObj, headerConfig)
+
+    return response
+}
+
+export const updateNotes = (noteObj) => {
+    let response = axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/updateNotes', noteObj, headerConfig)
+
+    return response
+}

@@ -1,4 +1,4 @@
-.NavBarMainContainer{
+.NavBarMainContainer {
     width: 100vw;
     height: 8vh;
     display: flex;
@@ -7,34 +7,33 @@
     border-bottom: 1px solid lightgrey;
 }
 
-.HamBurger{
-    width: 5%;
+.HamBurger {
+    width: 4%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.Logo{
-    width: 3%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.KeepLogo {
+    width: 2%;
+    height: 90%;
+    padding-top: 5px;
 }
 
-#keep{
+#keep {
+    
     padding-left: 10px;
     font-size: 22px;
     color: #5f6368;
 }
 
-.Blank1{
+.Blank1 {
     width: 5%;
     height: 100%;
 }
 
-.SearchBox{
+.SearchBox {
     width: 45%;
     height: 80%;
     display: flex;
@@ -44,24 +43,28 @@
     border-radius: 10px;
 }
 
-#search{
+#search {
     padding-left: 10px;
-    padding-top: 15px;
+    padding-top: 10px;
 }
 
-#filled-search{
+#filled-search {
     padding-left: 10px;
     padding-top: 8px;
     width: 640px;
     height: 35px;
 }
 
-.Blank2{
-    width: 15%;
+.SearchIcon2 {
+    display: none;
+}
+
+.Blank2 {
+    width:18%;
     height: 100%;
 }
 
-.MenuIcons{
+.MenuIcons {
     width: 10%;
     height: 100%;
     display: flex;
@@ -70,7 +73,7 @@
     justify-content: space-around;
 }
 
-.Avatar{
+.Avatar {
     width: 10%;
     height: 100%;
     display: flex;
@@ -78,4 +81,110 @@
     align-items: center;
     justify-content: flex-end;
     gap: 20px;
+}
+
+@media only screen and (min-width :360px) and (max-width :480px) {
+    .HamBurger {
+        padding-left: 20px;
+    }
+
+    .KeepLogo {
+        padding-left: 10px;
+    }
+    
+
+    #keep {
+        padding-left: 40px;
+        font-size: 20px;
+    }
+
+    .Blank1 {
+        display: none;
+    }
+
+    .SearchBox {
+        display: none;
+    }
+
+    .SearchIcon2 {
+        display: flex;
+        padding-bottom: 10px;
+    }
+
+    .Blank2 {
+        width: 10%;
+    }
+
+    .MenuIcons {
+        width: 35%;
+    }
+
+    .Avatar {
+        width: 20%;
+        gap: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media only screen and (min-width :481px) and (max-width :600px){
+    .HamBurger {
+        padding-left: 10px;
+    }
+
+    .KeepLogo {
+        padding-left: 10px;
+    }
+    
+
+    #keep {
+        padding-left: 40px;
+        font-size: 20px;
+    }
+
+    .Blank1 {
+        display: none;
+    }
+
+    .SearchBox {
+        display: none;
+    }
+
+    .SearchIcon2 {
+        display: flex;
+        padding-bottom: 10px;
+    }
+
+    .Blank2 {
+        width: 10%;
+    }
+
+    .MenuIcons {
+        width: 30%;
+    }
+
+    .Avatar {
+        width: 20%;
+        gap: 15px;
+        padding-right: 10px;
+    }
+}
+
+@media only screen and (min-width :601px) and (max-width :1024px){
+
+    #keep {
+        padding-left: 20px;
+    }
+
+    #search {
+        padding-left: 250px;
+        padding-top: 10px;
+    }
+    
+    .SearchIcon2 {
+        display: none;
+    }
+    
+    .Blank2 {
+        width: 10%;
+    }
 }

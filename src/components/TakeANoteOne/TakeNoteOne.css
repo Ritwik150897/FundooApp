@@ -18,7 +18,7 @@
     padding-left: 10px;
 }
 
-.filled-search{
+.filled-search1{
     width: 100%;
     height: 80%;
 }
@@ -30,4 +30,50 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+}
+
+@media only screen and (min-width :360px) and (max-width :480px){
+    .MainContainerOne{
+        width: 80vw;
+        left: 70px;
+    }
+    
+    .TakeNoteTextOne{
+        width: 60%;
+    }
+    
+    .TakeNoteIconsOne{
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width :481px) and (max-width :720px){
+    .MainContainerOne{
+        width: 75vw;
+        left: 70px;
+    }
+    
+    .TakeNoteTextOne{
+        width: 60%;
+    }
+    
+    .TakeNoteIconsOne{
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width :721px) and (max-width :1024px){
+    .MainContainerOne{
+        width: 40vw;
+        height: 5vh;
+        left: 200px;
+    }
+    
+    .TakeNoteTextOne{
+        width: 80%;
+    }
+    
+    .TakeNoteIconsOne{
+        width: 20%;
+    }
 }
